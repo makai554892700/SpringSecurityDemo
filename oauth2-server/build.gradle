@@ -1,0 +1,29 @@
+version = '0.0.1-SNAPSHOT'
+archivesBaseName = 'oauth2-server'
+bootJar.enabled = true
+
+dependencies {
+    implementation(project(':common'))
+    //sql 依赖
+    implementation("mysql:mysql-connector-java")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    // 一些个人工具 若担心安全问题可直接看源码复制出来使用
+    implementation("com.mys.www:oauth2-utils:0.0.2")
+    implementation("com.mys.www:oauth2-user-utils:0.0.2")
+    //oauth2 springSecurity 依赖
+    implementation("org.springframework.cloud:spring-cloud-starter-oauth2")
+}
+
+task clearMYSJar(type: Delete) {
+    delete("${projectDir}/app.jar")
+}
+task copyMYSJar(type: Copy) {
+    from(file("${project.rootDir}/config/oauth2.yml"))
+    into("${projectDir}")
+    from(file("${projectDir}/build/libs/${project.name}-${project.version}.jar"))
+    into("${projectDir}")
+    rename { String fileName ->
+        fileName.replace("${project.name}", "app").replace("-${project.version}", "")
+    }
+}
+copyMYSJar.dependsOn(buildNeeded, clearMYSJar)

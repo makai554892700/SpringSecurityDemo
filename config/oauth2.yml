@@ -1,0 +1,12 @@
+properties:
+  common-addr: localhost
+  mysql-addr: ${properties.common-addr}
+  mysql-port: 3306
+  mysql-user: root
+  mysql-pass: marking123
+  mysql-database: oauth2
+jwt:
+  keyPath: config/test.jks
+  password: test123456
+  keypair: test
+  expiration: 604800000

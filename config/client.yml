@@ -1,0 +1,19 @@
+properties:
+  common-addr: localhost
+  oauth2-port: 8100
+jwt:
+  keyPath: config/test.pub
+  publicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9xky3BHBQe+P4dbFeYlE9c6Pj8PXkWyWHs8xfzCoaUPYbrLU9KH0r+TwwQZ1nHy172kTWytTwAPvbcbD4JhKS1IAKR/DiLcjBItJ7dVzl73UofGpUaoWsUJ/FfMg1h0hy+ZrcMeVeDOCmU/TdYFuaTFOlOsu01i04kxsXNRnC3l5S/t3yYTZXucBPsM/YodG9IGwQbRkW6HIIIn3O259pBg4Sl6uGMOWMLee5UIWtAlsBC3cnvd7TgnmJEp+MJ69adGbbevRq/Ib2zb2yi79owk6LBMgs2PrSVuvoYQ//+kIH6kuecjoZlGYQ/8e01ofPmEBvTIF3GFpuZp2ZyHZwIDAQAB
+  expiration: 604800000
+  header: x-access-token
+security:
+  oauth2:
+    client:
+      client-id: test
+      client-secret: test123456
+      access-token-uri: http://${properties.common-addr}:${properties.oauth2-port}/oauth/token
+      user-authorization-uri: http://${properties.common-addr}:${properties.oauth2-port}/oauth/authorize
+    resource:
+      token-info-uri: http://${properties.common-addr}:${properties.oauth2-port}/oauth/check_token
+
+

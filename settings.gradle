@@ -1,0 +1,5 @@
+rootProject.name = 'SpringCloudDemo'
+include 'oauth2-server'
+include 'common'
+include 'oauth2-client'
+
