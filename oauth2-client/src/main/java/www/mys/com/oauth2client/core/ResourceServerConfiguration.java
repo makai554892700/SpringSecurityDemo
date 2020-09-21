@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.authentication.TokenExtractor;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import www.mys.com.common.LogUtils;
 import www.mys.com.utils.CloseUtils;
 import www.mys.com.utils.FileUtils;
@@ -27,10 +29,17 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     private String keyPath;
     @Resource(name = "yzTokenExtractor")
     private TokenExtractor tokenExtractor;
+    @Resource(name = "myAuthenticationEntryPoint")
+    private AuthenticationEntryPoint myAuthenticationEntryPoint;
+    @Resource(name = "myAccessDeniedHandler")
+    private AccessDeniedHandler myAccessDeniedHandler;
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.tokenExtractor(tokenExtractor);
+        resources.tokenExtractor(tokenExtractor)
+                .accessDeniedHandler(myAccessDeniedHandler)
+                .authenticationEntryPoint(myAuthenticationEntryPoint)
+        ;
     }
 
     @Override
