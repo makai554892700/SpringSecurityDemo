@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
+import sun.misc.BASE64Encoder;
 import www.mys.com.common.LogUtils;
 
 import javax.annotation.Resource;
@@ -35,6 +36,7 @@ public class JwtConfig {
     private DataSource dataSource;
     @Resource(name = "myJwtTokenEnhancer")
     private TokenEnhancer jwtTokenEnhancer;
+    private String publicKey;
 
     @Bean
     public PasswordEncoder myPasswordEncoder() {
@@ -51,6 +53,10 @@ public class JwtConfig {
         return new JwtTokenStore(myJwtAccessTokenConverter());
     }
 
+    public String getPublicKey() {
+        return publicKey;
+    }
+
     @Bean
     public JwtAccessTokenConverter myJwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter() {
@@ -64,6 +70,7 @@ public class JwtConfig {
         LogUtils.log("keyPathStr=" + keyPathStr);
         KeyPair keyPair = new KeyStoreKeyFactory(new PathResource(keyPathStr)
                 , password.toCharArray()).getKeyPair(keypair);
+        publicKey = new BASE64Encoder().encode(keyPair.getPublic().getEncoded());
         converter.setKeyPair(keyPair);
         return converter;
     }

@@ -15,6 +15,13 @@
             }
             dependencies {
                 api("org.springframework.boot:spring-boot-starter-web")
+                // openfeign/hystrix 依赖
+                implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+                implementation("org.springframework.cloud:spring-cloud-starter-netflix-hystrix")
+                implementation("org.springframework.cloud:spring-cloud-starter-netflix-ribbon")
+                implementation("org.springframework.cloud:spring-cloud-commons")
+                // eureka 依赖
+                implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
                 //sql 依赖
                 implementation("mysql:mysql-connector-java")
                 implementation("org.springframework.boot:spring-boot-starter-data-jpa")

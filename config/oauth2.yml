@@ -1,10 +1,14 @@
 properties:
-  common-addr: localhost
+#  common-addr: localhost
+  common-addr: 192.168.3.6
+  eureka-addr: ${properties.common-addr}
+  eureka-port: 8761
   mysql-addr: ${properties.common-addr}
   mysql-port: 3306
   mysql-user: root
   mysql-pass: marking123
   mysql-database: oauth2
+  enableEureka: true
 jwt:
   keyPath: config/test.jks
   password: test123456

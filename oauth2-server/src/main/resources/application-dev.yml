@@ -1,10 +1,25 @@
 server:
   port: 8100
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${properties.eureka-addr}:${properties.eureka-port}/eureka
+    enabled: ${properties.enableEureka}
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
 spring:
   application:
     name: oauth2-server
   datasource:
-    url: jdbc:mysql://${properties.mysql-addr}:${properties.mysql-port}/${properties.mysql-database}?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://${properties.mysql-addr}:${properties.mysql-port}/${properties.mysql-database}
     username: ${properties.mysql-user}
     password: ${properties.mysql-pass}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -14,3 +29,15 @@ spring:
       ddl-auto: update
     database: MYSQL
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+feign:
+  hystrix:
+    enabled: true
+
+
+
+
