@@ -1,4 +1,4 @@
-package www.mys.com.oauth2server.service;
+package www.mys.com.oauth2server.service.impl;
 
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         for (Role role : user.getRoles()) {
             roleStrs[i++] = role.getRoleName();
         }
-        MyUserDetails userDetails = new MyUserDetails(user.getPass(), user.getUserName(), user.getRealName()
+        MyUserDetails userDetails = new MyUserDetails(user.getPass(), user.getUserName()
                 , user.isAccountNonExpired(), user.isAccountNonLocked()
                 , user.isCredentialsNonExpired(), user.isEnabled()
                 , AuthorityUtils.createAuthorityList(roleStrs));

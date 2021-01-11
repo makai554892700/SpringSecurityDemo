@@ -21,10 +21,12 @@ import www.mys.com.oauth2server.config.MyPropertySourceFactory;
 @EntityScan(basePackages = {
         "www.mys.com.oauth2.pojo",
         "www.mys.com.oauth2user.pojo",
+        "www.mys.com.oauth2server.pojo",
 })
 @EnableJpaRepositories(basePackages = {
         "www.mys.com.oauth2.mapper",
         "www.mys.com.oauth2user.mapper",
+        "www.mys.com.oauth2server.mapper",
 })
 public class OAuth2ServerApplication {
 

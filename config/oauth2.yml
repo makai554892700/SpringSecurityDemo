@@ -10,7 +10,10 @@ properties:
   mysql-database: oauth2
   enableEureka: true
 jwt:
-  keyPath: config/test.jks
-  password: test123456
-  keypair: test
-  expiration: 604800000
+  keyPath: keyfile/yizhu.jks
+  publicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAioz9Gn9PHMcZPltNF3PLLpEAvCTWayLd5y+mpfSEfm/aqwHF30bACqq4D1G0Apjr5kuehgr/hK+jE0GpsKmsDPS8ncVHRfE2EcNQdqVHP9qdAxuTurFXZAe3YEFlslrSw/A2SVZyVd0Z8b9ie+V7pwhEK6EmXT9NLlmASDW36FjxwGUbd0qLTTNYcxiTkXb3GgD/uAj/Z60jn4jLIPlKQNCwnbWK9jc5OZuyOwIFy5vwxwHnxIxEgnphul+JgBHKNIat6u0cHySIN/wF9P9BlXx4azk1XPXLMA+s3BRSk2BFR9YDjGzigMCHZ2frqhIM9rIADXumb7gfzDgKuIZaGwIDAQAB
+  password: yizhu12345
+  keypair: yizhu
+  expiration: 604800
+  refreshExpiration: 1209600
+  header: x-access-token
